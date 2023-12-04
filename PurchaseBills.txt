@@ -1,0 +1,8 @@
+PurchaseBill
+Alvi Dervishaj    : Fri Feb 17 23:26:38 CET 2023
+ISBN-> 9780575080086
+	Quantity 8
+
+---------------------------
+		Total Books: 8 
+		Total Price: 12000.0 		
