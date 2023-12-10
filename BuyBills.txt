@@ -1,11 +1,11 @@
 BuyBill
-Admin    : Fri Feb 17 22:50:43 CET 2023
-ISBN-> 9780316029186
-	Quantity 56
+Supplier    : Sun Dec 10 19:45:52 CET 2023
+ISBN-> ISBN1234567890
+	Quantity 5
 
-ISBN-> 9780316441636
-	Quantity 40
+ISBN-> ISBN0987654321
+	Quantity 10
 
 ---------------------------
-		Total Books: 96 
-		Total Price: 152800.0 		
+		Total Books: 15 
+		Total Price: 0.0 		

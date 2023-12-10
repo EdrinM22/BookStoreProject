@@ -1,28 +1,79 @@
 package Orders;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BuyOrdersTest {
+    @TempDir
+    static File tempDir;
 
-    @Test
-    void getTotalPrice() {
+    private BuyOrders buyOrders;
+
+    @BeforeEach
+    void setUp() {
+        File tempFile = new File(tempDir, "BuyBills.txt");
+        File tempDataFile = new File(tempDir, "BuysBillData.dat");
+
+        buyOrders = new BuyOrders(
+                new ArrayList<>(List.of("ISBN123", "ISBN456")),
+                new ArrayList<>(List.of(3, 5)),
+                150.0,
+                "John Doe");
+
+        setPrivateField(buyOrders, "file", tempFile);
+        setPrivateField(buyOrders, "filedata", tempDataFile);
+    }
+
+    @AfterEach
+    void tearDown() {
+        buyOrders = null;
     }
 
     @Test
-    void getName() {
+    void testGetTotalPrice() {
+        assertEquals(150.0, buyOrders.getTotalPrice());
     }
 
     @Test
-    void getIsbns() {
+    void testGetName() {
+        assertEquals("John Doe", buyOrders.getName());
     }
 
     @Test
-    void getQuantity() {
+    void testGetIsbns() {
+        assertEquals(List.of("ISBN123", "ISBN456"), buyOrders.getIsbns());
     }
 
     @Test
-    void writeToFile() {
+    void testGetQuantity() {
+        assertEquals(List.of(3, 5), buyOrders.getQuantity());
     }
+
+    @Test
+    void testWriteToFile() {
+        assertDoesNotThrow(() -> buyOrders.writeToFile());
+    }
+
+    @Test
+    void testAddToDatabase() {
+        assertDoesNotThrow(() -> buyOrders.addToDatabase());
+    }
+    private static void setPrivateField(Object object, String fieldName, Object value) {
+        try {
+            var field = object.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(object, value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException("Error setting private field", e);
+        }
+    }
+
 }

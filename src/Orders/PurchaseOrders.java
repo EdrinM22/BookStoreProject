@@ -21,8 +21,8 @@ public class PurchaseOrders implements Serializable{
     private double totalPrice;
     private String name;
     private long time;
-    private transient File file = new File("PurchaseBills.txt");
-    private transient File purchasefile=new File("PurchaseBillData.dat");
+    public transient File file = new File("PurchaseBills.txt");
+    public transient File purchasefile=new File("PurchaseBillData.dat");
     public PurchaseOrders(ArrayList<String>isbn13,ArrayList<Integer>quantity,double totalPrice,String name){
         this.isbn13=isbn13;
         this.quantity=quantity;
