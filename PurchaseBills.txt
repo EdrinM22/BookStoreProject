@@ -1,5 +1,5 @@
 PurchaseBill
-Supplier    : Sun Dec 10 19:51:17 CET 2023
+Supplier    : Mon Dec 11 16:01:29 CET 2023
 ISBN-> ISBN1234567890
 	Quantity 5
 
