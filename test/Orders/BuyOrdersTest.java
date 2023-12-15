@@ -1,11 +1,14 @@
 package Orders;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,15 @@ class BuyOrdersTest {
     @AfterEach
     void tearDown() {
         buyOrders = null;
+    }
+
+    @AfterAll
+    static void tearDownClass() {
+        try {
+            Files.delete(tempDir.toPath());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
