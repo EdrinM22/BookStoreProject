@@ -1,8 +1,10 @@
 package Staff;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Worker implements Serializable {
+    @Serial
     private static final long serialVersionUID = 529670540410483L;
     private String fullName;
     private String phone;

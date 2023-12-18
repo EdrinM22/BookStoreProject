@@ -1,13 +1,7 @@
 package Orders;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,12 +9,13 @@ import java.util.Date;
 import BookstoreData.HeaderlessObjectOutputStream;
 
 public class PurchaseOrders implements Serializable{
+    @Serial
     private static final long serialVersionUID = 529482940413L;
-    private transient ArrayList<String >isbn13;
-    private transient ArrayList<Integer>quantity;
-    private double totalPrice;
-    private String name;
-    private long time;
+    private final transient ArrayList<String >isbn13;
+    private final transient ArrayList<Integer>quantity;
+    private final double totalPrice;
+    private final String name;
+    private final long time;
     public transient File file = new File("PurchaseBills.txt");
     public transient File purchasefile=new File("PurchaseBillData.dat");
     public PurchaseOrders(ArrayList<String>isbn13,ArrayList<Integer>quantity,double totalPrice,String name){
@@ -28,7 +23,7 @@ public class PurchaseOrders implements Serializable{
         this.quantity=quantity;
         this.totalPrice = totalPrice;
         this.name=name;
-        if(time==0) this.time=System.currentTimeMillis();
+        this.time=System.currentTimeMillis();
         writeToFile();
         addToDatabase();
     }
@@ -70,7 +65,7 @@ public class PurchaseOrders implements Serializable{
         try (PrintWriter writer = new PrintWriter(file)) {
             writer.println("PurchaseBill");
             Date temp=new Date(time);
-            writer.println(name+"    : "+temp.toString());
+            writer.println(name+"    : "+ temp);
             for (int index = 0; index < isbn13.size(); index++) {
                 writer.println("ISBN-> " + isbn13.get(index) + "\n\tQuantity " + quantity.get(index) + "\n");
 

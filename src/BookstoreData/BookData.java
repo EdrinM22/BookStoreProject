@@ -1,13 +1,6 @@
 package BookstoreData;
 
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import BookstoreData.Book.Genre;
 import Staff.Worker;
@@ -33,7 +26,8 @@ import javafx.stage.Stage;
 
 public class BookData implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @Serial
+	private static final long serialVersionUID = 1L;
     ArrayList<Book> books;
     File file ;
 
@@ -158,18 +152,7 @@ public class BookData implements Serializable {
 				// primaryStage.close();
 				stage.close();
 			}
-			// String isbn13 = isbnTF.getText();
-			// String title = titleTF.getText();
-			// float price = Float.parseFloat(priceTF.getText());
-			// String description = descriptionTA.getText();
-			// String author = authorTF.getText();
-			// boolean isPaperback = rbPaperback.isSelected();
-			// Book newBook = new Book(isbn13, title, description, price, author, isPaperback,0);
-			// for(int i=0; i < genreCheckboxes.size(); i++) {
-			// 	if(genreCheckboxes.get(i).isSelected())
-			// 		newBook.addGenre(Genre.values()[i]);
-					
-			// }
+
 		});
 		
 	

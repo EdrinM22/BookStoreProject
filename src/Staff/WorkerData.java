@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 import Style.*;
 
 public class WorkerData implements Serializable {
-    private static final long SerialVersionUID = 19184098341049090l;
+    private static final long SerialVersionUID = 19184098341049090L;
     ArrayList <Worker>workerData;
     File file ;
 
@@ -46,11 +46,11 @@ public class WorkerData implements Serializable {
 			while(true) {
 				worker = (Worker)reader.readObject();
                 if (worker instanceof Librarian)
-				workerData.add((Librarian)worker);
+				    workerData.add((Librarian)worker);
                 if (worker instanceof Manager)
-				workerData.add((Manager)worker);
+				    workerData.add((Manager)worker);
                 if (worker instanceof Admin)
-				workerData.add((Admin)worker);
+				    workerData.add((Admin)worker);
 			}
 		} catch (EOFException e) {
 			System.out.println("Read all the books from the file");

@@ -1,26 +1,14 @@
 package Style;
 
-import java.io.IOException;
-
-import BookstoreData.BookData;
-import Staff.Admin;
-import Staff.Librarian;
-import Staff.Manager;
-import Staff.Worker;
-import Staff.WorkerData;
 import StyleControllers.LoginController;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 

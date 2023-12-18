@@ -27,9 +27,6 @@ public class Book implements Serializable {
 		this.description = description;
 		this.paperback = paperback;
         this.stock = stock;
-        for (Genre g: genres) {
-            this.genre.concat(g.toString() + ", ");
-        }
         setIsbn13(isbn13);
 		setTitle(title);
 		setPrice(price);

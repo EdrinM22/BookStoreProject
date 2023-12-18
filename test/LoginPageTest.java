@@ -30,10 +30,10 @@ class LoginPageTest {
         stage.show();
 
         // Initialize references to UI components
-        GridPane center = (GridPane) scene.lookup("#center");
-        emailTextField = (TextField) center.lookup("#EmailLabel");
-        passwordTextField = (TextField) center.lookup("#PasswordLabel");
-        loginButton = (Button) scene.lookup("#LogInBtn");
+        GridPane center = (GridPane) scene.lookup("center");
+        emailTextField = (TextField) center.lookup("Email");
+        passwordTextField = (TextField) center.lookup("Password");
+        loginButton = (Button) scene.lookup("Enter");
     }
 
     @Test
