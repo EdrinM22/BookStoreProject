@@ -57,17 +57,17 @@ import javafx.stage.Stage;
 
 public class MainPage{
 
-    private BorderPane root;
+    private final BorderPane root;
     private HBox top;
     private VBox PersonalInfo;
-    private Stage primaryStage;
+    private final Stage primaryStage;
     private Button addBookBtn;
     private Button addWorkerBtn;
     private SettingStyles styles;
     private VBox center;
-    private Worker worker;
-    private BookData books;
-    private WorkerData workers;
+    private final Worker worker;
+    private final BookData books;
+    private final WorkerData workers;
     private TableView<Book> bookTableView;
     private TableView<Worker> workerTableView;
     private BorderPane right;
@@ -87,7 +87,7 @@ public class MainPage{
     private boolean permitionToPurchase;
     private boolean permitionToCheckLib;
     private boolean permitionToBill;
-    private BillData billData;
+    private final BillData billData;
 
 
     public MainPage(Stage primaryStage, Worker worker) {
@@ -314,10 +314,9 @@ public class MainPage{
                 for (Node el: g.getChildren()) {
                    
                     
-                    if(el instanceof TextField)
+                    if(el instanceof TextField t)
                     {
-                        TextField t=(TextField) el;
-                        quantity.add(Integer.parseInt(t.getText()));  
+                        quantity.add(Integer.parseInt(t.getText()));
                     }
                 }
             }
@@ -337,9 +336,8 @@ public class MainPage{
             for (Node el: g.getChildren()) {
                int q=0;
                 
-                if(el instanceof TextField)
+                if(el instanceof TextField t)
                 {
-                    TextField t=(TextField) el;
                     q = Integer.parseInt(t.getText());
                     
                     quantity.add(q);     
@@ -442,7 +440,7 @@ public class MainPage{
         bookIsbns.add(book.getIsbn13());
         prices.add(Double.parseDouble(book.getPrice()));
         bookISBN.setStyle(styles.getSalesLabel());
-        Label bookPrice = new Label("" + book.getPrice());
+        Label bookPrice = new Label(book.getPrice());
         bookPrice.setStyle(styles.getSalesLabel());
         TextField nrBooks = new TextField();
         nrBooks.setPrefHeight(20);
@@ -460,7 +458,7 @@ public class MainPage{
                 Label totalLabel = new Label("Total: " + TotalBookPrice);
                 totalLabel.setStyle(styles.getSalesLabel());
                 if(TotalLabelHbox.getChildren().size() != 0){
-                    TotalLabelHbox.getChildren().clear();;
+                    TotalLabelHbox.getChildren().clear();
                 }
                 TotalLabelHbox.getChildren().add(totalLabel);
             }
@@ -506,33 +504,21 @@ public class MainPage{
         CheckBox newPermitionToPurchaseCheckBox = new CheckBox("Permition to purchase");
         
         newPermitionToPurchaseCheckBox.setOnAction(e->{
-            if(newPermitionToPurchaseCheckBox.isSelected()){
-                permitionToPurchase = true;
-            } else {
-                permitionToPurchase = false;
-            }
+            permitionToPurchase = newPermitionToPurchaseCheckBox.isSelected();
             System.out.println(permitionToPurchase);
         });
         
         CheckBox newPremitionToCheckLib = new CheckBox("Check librararian");
 
         newPremitionToCheckLib.setOnAction(e->{
-            if(newPremitionToCheckLib.isSelected()){
-                permitionToCheckLib = true;
-            } else {
-                permitionToCheckLib = false;
-            }
+            permitionToCheckLib = newPremitionToCheckLib.isSelected();
             System.out.println(permitionToCheckLib);
         });
 
         CheckBox newPremitionToBill = new CheckBox("Permition to bill");
 
         newPremitionToBill.setOnAction(e->{
-            if(newPremitionToBill.isSelected()){
-                permitionToBill = true;
-            } else {
-                permitionToBill = false;
-            }
+            permitionToBill = newPremitionToBill.isSelected();
             System.out.println(permitionToBill);
         });
 
