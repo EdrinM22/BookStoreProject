@@ -1,0 +1,11 @@
+TODO List:
+- 1. BookDataTest kryj                                                                                                  --Not Pushed
+- 2. WorkerDataTest Kryj                                                                                                --Leave For last
+- 3. TestFX
+- 4. BillDataTest Look into
+- 5. BuyOrdersTest <<Works on Linux. Not on Windows(not our fault *shrug*>> Need to find workaround                     ====> Done
+- 6. Purchase.java SafeDelete                                                                                           ==>> Done
+- 7. PurchaseOrders Test --> Test for negative values, more than stock!!
+- 8. SetPermition --> SetPermission (typo)                                                                              ==>> Cannot be done cuz it messes the binaries and we have no users  ಠ_ಠ
+- 9. KUDO QE KA PERMITION --> PERMISSION SE U TRRASHA                                                                   ==>> Cannot be done cuz it messes the binaries and we have no users  ಠ_ಠ
+- 10. AppTest- maybe check per icon

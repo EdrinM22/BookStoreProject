@@ -1,5 +1,8 @@
 PurchaseBill
-Admin    : Mon Dec 18 19:50:15 CET 2023
+Admin    : Mon Dec 18 20:39:21 CET 2023
+ISBN-> 9780547928227
+	Quantity 12
+
 ---------------------------
-		Total Books: 0 
+		Total Books: 12 
 		Total Price: 0.0 		

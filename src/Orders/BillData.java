@@ -21,7 +21,7 @@ public class BillData {
         try(ObjectInputStream reader = new ObjectInputStream(new FileInputStream(purchasefile))) {
 			PurchaseOrders p;
             while (true){
-                System.out.println("tits");
+                System.out.println("read");
                 p=(PurchaseOrders)reader.readObject();
                 
                 purchases.add(p);

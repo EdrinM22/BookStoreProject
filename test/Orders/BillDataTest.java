@@ -61,4 +61,5 @@ public class BillDataTest {
         double totalBuys = billData.getTotalBuysFromName("NonexistentName");
         assertEquals(0.0, totalBuys);
     }
+    //To do : Work on this test
 }
