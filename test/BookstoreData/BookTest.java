@@ -102,6 +102,6 @@ class BookTest {
     @Test
     void testSetPriceNegative() {
         book.setPrice(-39.99f);
-        assertEquals("Cant be negative", book.getPrice());
+        assertEquals("Can't be negative", book.getPrice());
     }
 }

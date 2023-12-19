@@ -33,9 +33,6 @@ public class Book implements Serializable {
 		setAuthor(author);
 		setPaperBack(paperback);
 		setStock(stock);
-		
-        
-        
 	}
 	
     
@@ -133,6 +130,7 @@ public class Book implements Serializable {
 			setGenres(genres);
 		}
 		return genreP.get();
+
 	}
 
 	public void setStock (int stock) {
