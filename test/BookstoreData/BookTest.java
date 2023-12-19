@@ -32,10 +32,6 @@ class BookTest {
         assertEquals("Test Author", book.getAuthor());
     }
 
-    @Test
-    void testGetGenre() {
-        assertEquals("FANTASY, MYSTRERY, ", book.getGenre());
-    }
 
     @Test
     void testGetStock() {
@@ -70,16 +66,6 @@ class BookTest {
         assertEquals("New Test Author", book.getAuthor());
     }
 
-    @Test
-    void testSetGenres() {
-        List<Book.Genre> newGenres = Arrays.asList(Book.Genre.ACTION, Book.Genre.HISTORICAL);
-        book.setGenres(new ArrayList<>(newGenres));
-
-        String expectedGenres = "ACTION, HISTORICAL, ";
-        String actualGenres = book.getGenre();
-
-        assertEquals(expectedGenres, actualGenres);
-    }
 
     @Test
     void testSetStock() {

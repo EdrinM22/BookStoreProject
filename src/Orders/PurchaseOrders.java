@@ -46,21 +46,21 @@ public class PurchaseOrders implements Serializable{
     }
 
     private boolean addToDatabase() {
-		try {
-			
-			FileOutputStream outputStream = new FileOutputStream(purchasefile, true);
-			ObjectOutputStream writer;
-			if (file.length() > 0)
-				writer = new HeaderlessObjectOutputStream(outputStream);
-			else
-				writer = new ObjectOutputStream(outputStream); 
-			writer.writeObject(this);
-			writer.close();
-			return true;
-		} catch(IOException ex) {
-			return false;
-		}
-	}
+        try {
+
+            FileOutputStream outputStream = new FileOutputStream(purchasefile, true);
+            ObjectOutputStream writer;
+            if (file.length() > 0)
+                writer = new HeaderlessObjectOutputStream(outputStream);
+            else
+                writer = new ObjectOutputStream(outputStream);
+            writer.writeObject(this);
+            writer.close();
+            return true;
+        } catch(IOException ex) {
+            return false;
+        }
+    }
     public void writeToFile() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

@@ -19,7 +19,7 @@ public class App extends Application
     try{
         primaryStage.getIcons().add(new Image("file:src/Images/icon.png"));
     }catch(Exception e){
-        System.out.println("nuk ka ikone");
+        System.out.println("No Icon Found");
     }
         
         
