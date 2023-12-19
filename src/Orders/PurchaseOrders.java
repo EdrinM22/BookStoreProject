@@ -2,6 +2,7 @@ package Orders;
 
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -61,29 +62,24 @@ public class PurchaseOrders implements Serializable{
 		}
 	}
     public void writeToFile() {
-        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         try (PrintWriter writer = new PrintWriter(file)) {
             writer.println("PurchaseBill");
-            Date temp=new Date(time);
-            writer.println(name+"    : "+ temp);
+            Date temp = new Date(time);
+            writer.println(name + "    : " + dateFormat.format(temp));
             for (int index = 0; index < isbn13.size(); index++) {
-                writer.println("ISBN-> " + isbn13.get(index) + "\n\tQuantity " + quantity.get(index) + "\n");
-
+                writer.println("ISBN-> " + isbn13.get(index) + "\n\tQuantity " + quantity.get(index) );
             }
 
             writer.println("---------------------------");
             Integer total = 0;
-            for ( Integer i : quantity) {
+            for (Integer i : quantity) {
                 total += i;
             }
             writer.println("\t\tTotal Books: " + total + " \n\t\tTotal Price: " + totalPrice + " \t\t");
-            writer.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            System.out.println("Bills File not found");
+            System.err.println("Bills File not found");
         }
-
-        
     }
-    
 }
