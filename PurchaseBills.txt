@@ -1,5 +1,5 @@
 PurchaseBill
-Supplier    : 2023-12-19 21:52:03
+Supplier    : 2023-12-20 20:39:37
 ISBN-> ISBN1234567890
 	Quantity 5
 ISBN-> ISBN0987654321
