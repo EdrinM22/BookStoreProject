@@ -117,22 +117,6 @@ public class Book implements Serializable {
         this.authorP = new SimpleStringProperty(authorP);
     }
 
-//    public void setGenres(ArrayList<Genre> genres) {
-//        String temp = "";
-//		for (Genre g: genres) {
-//			temp.concat(g.toString() + ", ");
-//		}
-//		this.genreP = new SimpleStringProperty(temp);
-//    }
-
-//	public String getGenre() {
-//		if(genreP == null) {
-//			setGenres(genres);
-//		}
-//		return genreP.get();
-//
-//	}
-
 	public void setStock (int stock) {
 		this.stockP = new SimpleStringProperty(Integer.toString(stock));
 	}
@@ -179,17 +163,4 @@ public class Book implements Serializable {
     }
 
 
-//	public Object getPUBLISHER() {
-//		return null;
-//	}
-//
-//
-//    public Object getQUANTITY() {
-//        return null;
-//    }
-//
-//
-//    public Object getLANGUAGE() {
-//        return null;
-//    }
 }

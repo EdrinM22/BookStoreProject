@@ -1,63 +1,118 @@
 package Staff;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class WorkerTest {
-    private static class TestWorker extends Worker {
-        public TestWorker(String fullName, String phone, String email, String dateOfBirth,
-                          float salary, String password, ACCESSLEVEL accessLevel, Gender gender) {
-            super(fullName, phone, email, dateOfBirth, salary, password, accessLevel, gender);
-        }
-
-        @Override
-        public void interact() {
-        }
-    }
-    @Test
-    void testConstructor() {
-        TestWorker worker = new TestWorker("John Doe", "123-456-7890", "john.doe@example.com", "1990-01-01", 50000.0f, "password123", Worker.ACCESSLEVEL.MANAGER, Gender.MALE);
-
-        assertEquals("John Doe", worker.getFullName());
-        assertEquals("123-456-7890", worker.getPhone());
-        assertEquals("john.doe@example.com", worker.getEmail());
-        assertEquals("1990-01-01", worker.getDateOfBirth());
-        assertEquals(50000.0f, worker.getSalary());
-        assertEquals("password123", worker.getPassword());
-        assertEquals(Worker.ACCESSLEVEL.MANAGER, worker.getACCESSLEVEL());
-        assertEquals(Gender.MALE, worker.getGender());
-        assertEquals("Manager", worker.getStatus());
-    }
+class WorkerTest {
 
     @Test
     void testInteract() {
-        TestWorker worker = new TestWorker("John Doe", "123-456-7890", "john.doe@example.com", "1990-01-01", 50000.0f, "password123", Worker.ACCESSLEVEL.MANAGER, Gender.MALE);
-        assertDoesNotThrow(worker::interact);
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        assertDoesNotThrow(librarian::interact);
     }
 
     @Test
     void testAddPurchases() {
-        TestWorker worker = new TestWorker("John Doe", "123-456-7890", "john.doe@example.com", "1990-01-01", 50000.0f, "password123", Worker.ACCESSLEVEL.MANAGER, Gender.MALE);
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
 
-        worker.addPurchases(100.0);
-        assertEquals(100.0, worker.getTotalPurchases());
+        librarian.addPurchases(100.0);
+        assertEquals(100.0, librarian.getTotalPurchases());
     }
 
     @Test
     void testAddBuys() {
-        TestWorker worker = new TestWorker("John Doe", "123-456-7890", "john.doe@example.com", "1990-01-01", 50000.0f, "password123", Worker.ACCESSLEVEL.MANAGER, Gender.MALE);
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
 
-        worker.addBuys(50.0);
-        assertEquals(50.0, worker.getTotalBuys());
+        librarian.addBuys(50.0);
+        assertEquals(50.0, librarian.getTotalBuys());
     }
 
     @Test
-    void testSetStatus() {
-        TestWorker worker = new TestWorker("John Doe", "123-456-7890", "john.doe@example.com", "1990-01-01", 50000.0f, "password123", Worker.ACCESSLEVEL.MANAGER, Gender.MALE);
+    void testGetStatus() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
 
-        worker.setStatus(Worker.ACCESSLEVEL.LIBRARIAN);
-        assertEquals("Librarian", worker.getStatus());
+        assertEquals("Librarian", librarian.getStatus());
     }
+
+    @Test
+    void testSetFullName() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setFullName("Jane Doe");
+        assertEquals("Jane Doe", librarian.getFullName());
+    }
+
+    @Test
+    void testSetAccessLevel() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setACCESSLEVEL(Worker.ACCESSLEVEL.ADMIN);
+        assertEquals(Worker.ACCESSLEVEL.ADMIN, librarian.getACCESSLEVEL());
+        librarian.setACCESSLEVEL(Worker.ACCESSLEVEL.MANAGER);
+        assertEquals(Worker.ACCESSLEVEL.MANAGER, librarian.getACCESSLEVEL());
+    }
+
+    @Test
+    void testSetPhone() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setPhone("987-654-3210");
+        assertEquals("987-654-3210", librarian.getPhone());
+    }
+
+    @Test
+    void testSetSalary() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setSalary(6000.0f);
+        assertEquals(6000.0f, librarian.getSalary());
+    }
+
+    @Test
+    void testSetEmail() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setEmail("jane@example.com");
+        assertEquals("jane@example.com", librarian.getEmail());
+    }
+
+    @Test
+    void testSetDateOfBirth() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setDateOfBirth("02-02-1995");
+        assertEquals("02-02-1995", librarian.getDateOfBirth());
+    }
+
+    @Test
+    void testSetPassword() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.setPassword("newpassword");
+        assertEquals("newpassword", librarian.getPassword());
+    }
+
+    @Test
+    void testGetTotalBuys() {
+        Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
+                Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+
+        librarian.addBuys(30.0);
+        librarian.addBuys(20.0);
+        assertEquals(50.0, librarian.getTotalBuys());
+    }
+
 }

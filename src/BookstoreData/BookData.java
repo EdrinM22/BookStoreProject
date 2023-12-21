@@ -170,12 +170,12 @@ public class BookData implements Serializable {
 		stage.setTitle("Bookstore");
 		stage.show();
     }
-	private boolean checkIsbn13(String isbn13) {
+	static boolean checkIsbn13(String isbn13) {
 		if(isbn13.matches("[0-9]{13}"))
 			return true;
 		return false;
 	}
-    private boolean writeBookToFile(Book newBook) {
+    boolean writeBookToFile(Book newBook) {
 		try {
 			
 			FileOutputStream outputStream = new FileOutputStream(file, true);
@@ -191,7 +191,7 @@ public class BookData implements Serializable {
 			return false;
 		}
 	}
-	private boolean rewirteFile() {
+	boolean rewirteFile() {
 		try {
 			
 			FileOutputStream outputStream = new FileOutputStream(file);
@@ -206,18 +206,28 @@ public class BookData implements Serializable {
 		}
 	}
 
-    public void addBooksToStock(BuyOrders buyOreder) {
-         for (int index = 0; index < buyOreder.getIsbns().size(); index++) {
-			Book book = getBook(buyOreder.getIsbns().get(index));
-			book.addStock((int)buyOreder.getQuantity().get(index));
-		 }
-		 rewirteFile();
-		
-	   }
+	public void addBooksToStock(BuyOrders buyOrder) {
+		for (int index = 0; index < buyOrder.getIsbns().size(); index++) {
+			Book book = getBook(buyOrder.getIsbns().get(index));
+
+			if (book != null) {
+				book.addStock((int) buyOrder.getQuantity().get(index));
+			} else {
+				System.out.println("Book with ISBN " + buyOrder.getIsbns().get(index) + " not found.");
+			}
+		}
+		rewirteFile();
+	}
+
 	public void removeBooksFromStock(PurchaseOrders sellOrder) {
 		for (int index = 0; index < sellOrder.getIsbns().size(); index++) {
 			Book book = getBook(sellOrder.getIsbns().get(index));
-			book.removeStock(sellOrder.getQuantity().get(index));
+
+			if (book != null) {
+				book.removeStock(sellOrder.getQuantity().get(index));
+			} else {
+				System.out.println("Book with ISBN " + sellOrder.getIsbns().get(index) + " not found.");
+			}
 		}
 		rewirteFile();
 	}
@@ -252,7 +262,14 @@ public class BookData implements Serializable {
     }
 
 	public int getBookQuantity(String isbn) {
-		return getBook(isbn).getStockInt();
+		Book book = getBook(isbn);
+
+		if (book != null) {
+			return book.getStockInt();
+		} else {
+			System.out.println("Book with ISBN " + isbn + " not found.");
+			return 0;
+		}
 	}
 }
 

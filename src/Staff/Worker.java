@@ -14,7 +14,7 @@ public abstract class Worker implements Serializable {
     private float salary;
     private String Status;
     private ACCESSLEVEL AccesLevel;
-    private Gender gender;
+    private final Gender gender;
     private double totalPurchases;
     private double totalBuys;
     public Worker(String fullName, String phone, String email, String dateOfBirth,
