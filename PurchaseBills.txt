@@ -1,9 +1,9 @@
 PurchaseBill
-Supplier    : 2023-12-20 20:39:37
-ISBN-> ISBN1234567890
+TestCustomer    : 2023-12-22 11:30:10
+ISBN-> 1234567890123
+	Quantity 2
+ISBN-> 9876543210123
 	Quantity 5
-ISBN-> ISBN0987654321
-	Quantity 10
 ---------------------------
-		Total Books: 15 
-		Total Price: 150.0 		
+		Total Books: 7 
+		Total Price: 0.0 		

@@ -1,5 +1,6 @@
 package Style;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class MainPage{
     private boolean permitionToCheckLib;
     private boolean permitionToBill;
     private final BillData billData;
-
+    File file ;
 
     public MainPage(Stage primaryStage, Worker worker) {
         this.primaryStage = primaryStage;
@@ -356,7 +357,7 @@ public class MainPage{
         PurchaseOrders purchase = new PurchaseOrders(bookIsbns, quantity, TotalBookPrice, worker.getFullName());
         books.removeBooksFromStock(purchase);
         worker.addPurchases(purchase.getTotalPrice());
-        workers.rewirteFile();
+        workers.rewirteFile(file);
         BookInfoHolder.getChildren().clear();
         primaryStage.setScene(new Scene(new MainPage(primaryStage, worker).getRoot(), 800, 600));
         primaryStage.setFullScreen(true);

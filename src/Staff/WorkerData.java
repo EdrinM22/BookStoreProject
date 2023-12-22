@@ -35,8 +35,8 @@ public class WorkerData implements Serializable {
 
     public WorkerData() {
      
-     file= new File("workers.dat");
-     workerData=new ArrayList<>();
+     file = new File("workers.dat");
+     workerData = new ArrayList<>();
      readWorkerData();
     }
     public void readWorkerData() {
@@ -64,9 +64,9 @@ public class WorkerData implements Serializable {
     }
     public void deleteWorker(Worker worker) {
         workerData.remove(worker);
-        rewirteFile();
+        rewirteFile(file);
     }
-    public boolean rewirteFile() {
+    public boolean rewirteFile(File file) {
 		try {
 			
 			FileOutputStream outputStream = new FileOutputStream(file);
@@ -295,7 +295,7 @@ public class WorkerData implements Serializable {
                 workerData.add(admin);
             }
 
-         rewirteFile();
+         rewirteFile(file);
  }
    
     public ArrayList<Worker> getData(){
