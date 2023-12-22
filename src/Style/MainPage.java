@@ -1,60 +1,32 @@
 package Style;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 import BookstoreData.Book;
 import BookstoreData.BookData;
 import Orders.BillData;
 import Orders.BuyOrders;
 import Orders.PurchaseOrders;
-import Staff.Admin;
-import Staff.Gender;
-import Staff.Librarian;
-import Staff.Manager;
-import Staff.Worker;
-import Staff.WorkerData;
+import Staff.*;
 import Staff.Worker.ACCESSLEVEL;
 import StyleControllers.MainController;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.VideoTrack;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class MainPage{
 
@@ -62,8 +34,8 @@ public class MainPage{
     private HBox top;
     private VBox PersonalInfo;
     private final Stage primaryStage;
-    private Button addBookBtn;
-    private Button addWorkerBtn;
+    Button addBookBtn;
+    Button addWorkerBtn;
     private SettingStyles styles;
     private VBox center;
     private final Worker worker;
