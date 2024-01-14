@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class LoginPage{
 
     private BorderPane root;
-    private Stage primaryStage;
+    private final Stage primaryStage;
 
     public LoginPage(Stage primaryStage) {
         this.primaryStage = primaryStage;
