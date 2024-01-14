@@ -1,9 +1,5 @@
 PurchaseBill
-TestCustomer    : 2024-01-14 12:10:57
-ISBN-> 1234567890123
-	Quantity 2
-ISBN-> 9876543210123
-	Quantity 5
+TestName    : 2024-01-14 19:11:30
 ---------------------------
-		Total Books: 7 
-		Total Price: 0.0 		
+		Total Books: 0 
+		Total Price: 150.0 		

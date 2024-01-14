@@ -1,11 +1,8 @@
 BuyBill
-TestSupplier    : Sun Jan 14 12:10:57 CET 2024
-ISBN-> 1234567890123
+John Doe    : Sun Jan 14 19:11:31 CET 2024
+ISBN-> ISBN123
+	Quantity 3
+
+ISBN-> ISBN456
 	Quantity 5
 
-ISBN-> 9876543210123
-	Quantity 10
-
----------------------------
-		Total Books: 15 
-		Total Price: 0.0 		
