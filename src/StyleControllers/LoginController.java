@@ -1,7 +1,5 @@
 package StyleControllers;
 
-import java.net.SocketTimeoutException;
-
 import Staff.*;
 import Style.MainPage;
 import Style.SettingStyles;
@@ -19,7 +17,8 @@ public class LoginController{
 
         WorkerData workerData = new WorkerData();
         SettingStyles styles = new SettingStyles();
-            
+        wrongPassword.setId("WrongP");
+        wrongEmail.setId("WrongE");
         boolean emailExists=false;
         Worker temp = workerData.getWorkerFromEmail(email);
         center.getChildren().remove(wrongPassword);

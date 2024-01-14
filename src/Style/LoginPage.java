@@ -37,6 +37,7 @@ public class LoginPage{
 
         HBox bottom = new HBox();
         Button LogInBtn = new Button("Enter");
+        LogInBtn.setId("enter");
         bottom.getChildren().add(LogInBtn);
         bottom.setAlignment(Pos.CENTER);
         bottom.setPadding(new javafx.geometry.Insets(0, 0, 150, 0));
@@ -52,7 +53,9 @@ public class LoginPage{
         Label PasswordLabel = new Label("Password");
         PasswordLabel.setStyle(styles.getLoginLabelStyle());
         TextField EmailTextField = new TextField();
+        EmailTextField.setId("email");
         PasswordField PasswordTextField = new PasswordField();
+        PasswordTextField.setId("password");
         center.add(EmailLabel, 0, 0);
         center.add(EmailTextField, 0, 1);
         center.add(PasswordLabel, 0, 2);

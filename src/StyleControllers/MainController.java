@@ -1,36 +1,28 @@
 package StyleControllers;
 
-import java.util.ArrayList;
-
-import BookstoreData.*;
-import Orders.BuyOrders;
-import Staff.*;
-import Style.*;
+import BookstoreData.Book;
+import BookstoreData.BookData;
+import Staff.Worker;
+import Staff.WorkerData;
+import Style.LoginPage;
+import Style.SettingStyles;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class MainController {
 
-    private static Double TotalBookPrice = 0.0;
+    private static final Double TotalBookPrice = 0.0;
     private static VBox bookInfo;
-    private static ArrayList <String> bookIsbns = new ArrayList<String>();
-    private static SettingStyles styles = new SettingStyles();
+    private static final ArrayList <String> bookIsbns = new ArrayList<String>();
+    private static final SettingStyles styles = new SettingStyles();
     
     //LogOut
     public static void LogOut(Stage primaryStage){

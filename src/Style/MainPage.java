@@ -131,10 +131,11 @@ public class MainPage{
         //Top Pane
         top = new HBox(500);
         Button LogOutBtn = new Button("Log Out");
+        LogOutBtn.setId("Logout");
         LogOutBtn.setStyle(styles.getLogOutBtnStyle());
-
         HBox searchBox = new HBox(15);
         TextField searchBar = new TextField();
+        searchBar.setId("Search");
         searchBar.setStyle(styles.getSearchBarStyle());
         searchBar.setPromptText("Search");
         searchBar.setPrefHeight(50);
@@ -170,8 +171,10 @@ public class MainPage{
         bookBottomPane.setPadding(new javafx.geometry.Insets(10, 10, 10, 0));
         bookBottomPane.setStyle(styles.getBtnPane());
         addBookBtn = new Button("Add Book");
+        addBookBtn.setId("AddBook");
         addBookBtn.setStyle(styles.getLogOutBtnStyle());
         addBookToStockBtn = new Button("Add To Stock");
+        addBookToStockBtn.setId("AddBookStock");
         addBookToStockBtn.setStyle(styles.getLogOutBtnStyle());
         
         if(worker.getACCESSLEVEL().toString().equals("LIBRARIAN")) {
@@ -211,7 +214,7 @@ public class MainPage{
         workerBottomPane.setStyle(styles.getBtnPane());
 
         addWorkerBtn = new Button("Add Worker");
-
+        addWorkerBtn.setId("AddWorker");
         if(!worker.getACCESSLEVEL().toString().equals("ADMIN")){
                     addWorkerBtn.setDisable(true);
         }
@@ -369,6 +372,7 @@ public class MainPage{
         BottomVBox.getChildren().addAll(TotalLabelHbox, purchaseBookBtnHolder);
         purchaseBookBtnHolder.setStyle(styles.getBtnPane());
         purchaseBookBtn = new Button("Purchase Books");
+        purchaseBookBtn.setId("PurchaseBook");
         if(worker instanceof Librarian){
             boolean hasAccess = ((Librarian) worker).isPermitionToBill();
             if(!hasAccess){
@@ -416,6 +420,7 @@ public class MainPage{
         Label bookPrice = new Label(book.getPrice());
         bookPrice.setStyle(styles.getSalesLabel());
         TextField nrBooks = new TextField();
+        nrBooks.setId("NrBooks");
         nrBooks.setPrefHeight(20);
         nrBooks.setPrefWidth(50);
 
@@ -458,6 +463,7 @@ public class MainPage{
         workerFullName = new Label(tempworker.getFullName());
         workerFullName.setStyle(styles.getSalesLabel());
         TextField newName = new TextField();
+        newName.setId("NewName");
         newName.setStyle(styles.getLoginTextFieldStyle());
         
         Label totalSales= new Label("Sales : "+tempworker.getTotalPurchases());
@@ -467,6 +473,7 @@ public class MainPage{
         workerEmail = new Label(tempworker.getEmail());
         workerEmail.setStyle(styles.getSalesLabel());
         TextField newEmail = new TextField();
+        newEmail.setId("NewEmail");
         newEmail.setStyle(styles.getLoginTextFieldStyle());
                         
         ChoiceBox<Worker.ACCESSLEVEL> newAccessLevel = new ChoiceBox<>();
@@ -521,21 +528,25 @@ public class MainPage{
         workerSalary = new Label("" + tempworker.getSalary());
         workerSalary.setStyle(styles.getSalesLabel());
         TextField newSalary = new TextField();
+        newSalary.setId("NewSalary");
         newSalary.setStyle(styles.getLoginTextFieldStyle());
 
         workerPhoneNumber = new Label(tempworker.getPhone());
         workerPhoneNumber.setStyle(styles.getSalesLabel());
         TextField newPhoneNumber = new TextField();
+        newPhoneNumber.setId("NewPhone");
         newPhoneNumber.setStyle(styles.getLoginTextFieldStyle());
 
         
 
         Button deletWorkerBtn = new Button("Delete Worker");
+        deletWorkerBtn.setId("DeleteWorker");
         deletWorkerBtn.setStyle(styles.getLogOutBtnStyle());
         if(!(worker.getACCESSLEVEL().toString().equals("ADMIN"))){
             deletWorkerBtn.setDisable(true);
         }
         Button editWorkerBtn = new Button("Edit Worker");
+        editWorkerBtn.setId("EditWorker");
         editWorkerBtn.setStyle(styles.getLogOutBtnStyle());
         if(!(worker.getACCESSLEVEL().toString().equals("ADMIN"))){
             editWorkerBtn.setDisable(true);
