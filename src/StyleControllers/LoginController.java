@@ -17,8 +17,6 @@ public class LoginController{
 
         WorkerData workerData = new WorkerData();
         SettingStyles styles = new SettingStyles();
-        wrongPassword.setId("WrongP");
-        wrongEmail.setId("WrongE");
         boolean emailExists=false;
         Worker temp = workerData.getWorkerFromEmail(email);
         center.getChildren().remove(wrongPassword);
@@ -44,12 +42,14 @@ public class LoginController{
         }
             else {
                 wrongPassword = new Label("Wrong Password");
+                wrongPassword.setId("WrongP");
                 wrongPassword.setStyle("-fx-text-fill: red; -fx-font-size: 20px;");
                 center.add(wrongPassword, 0, 4);
             }
 
         }else{
             wrongEmail = new Label("Email Doesn't Exist");
+            wrongEmail.setId("WrongE");
             wrongEmail.setStyle("-fx-text-fill: red; -fx-font-size: 20px;");
             center.add(wrongEmail, 0, 4);
         }
