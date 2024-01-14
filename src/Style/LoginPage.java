@@ -29,6 +29,7 @@ public class LoginPage{
 
         HBox top = new HBox();
         Text LoginText = new Text("Login");
+        LoginText.setId("Login");
         LoginText.setStyle(styles.getLoginTextStyle());
         top.getChildren().add(LoginText);
         top.setAlignment(Pos.CENTER);
@@ -50,8 +51,10 @@ public class LoginPage{
         center.setAlignment(Pos.CENTER);
         Label EmailLabel = new Label("Email");
         EmailLabel.setStyle(styles.getLoginLabelStyle());
+        EmailLabel.setId("Email");
         Label PasswordLabel = new Label("Password");
         PasswordLabel.setStyle(styles.getLoginLabelStyle());
+        PasswordLabel.setId("Password");
         TextField EmailTextField = new TextField();
         EmailTextField.setId("email");
         PasswordField PasswordTextField = new PasswordField();
