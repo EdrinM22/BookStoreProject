@@ -57,7 +57,7 @@ class MainPageTest extends ApplicationTest {
 
     @Test
     public void shouldSearchForBookByTitle() {
-        clickOn("#Search").write("test123").press(KeyCode.ENTER);
+        clickOn("#Search").write("The Hobbit").press(KeyCode.ENTER);
     }
 
 

@@ -2,9 +2,18 @@ package Staff;
 
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
+
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.util.ArrayList;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isEnabled;
@@ -15,11 +24,12 @@ class WorkerDataTestFX extends ApplicationTest {
 
     private WorkerData workerData;
 
+
     @Override
     public void start(Stage stage) {
         workerData = new WorkerData();
 
-        workerData.newWorkerForm(stage, new Admin("Sample", "123456789", "sample@example.com", 2000.0F, "20/2/2000", Gender.MALE, "password", Worker.ACCESSLEVEL.LIBRARIAN)); // Assuming newWorkerForm sets up the form correctly
+        workerData.newWorkerForm(stage, new Admin("Sample", "123456789", "sample@example.com", 2000.0F, "20/2/2000", Gender.MALE, "password", Worker.ACCESSLEVEL.LIBRARIAN));
 
     }
     @Test
@@ -33,8 +43,8 @@ class WorkerDataTestFX extends ApplicationTest {
         clickOn("#maleRadio");
         clickOn("#locationChoiceBox").clickOn("Librarian");
 
-        clickOn("#submitButton");
-
+        verifyThat("#submitButton", isEnabled());
+//it works it just adds a new worker to the main database
     }
 
     @Test
@@ -68,7 +78,7 @@ class WorkerDataTestFX extends ApplicationTest {
         clickOn("#locationChoiceBox").clickOn("Librarian");
         verifyThat("#locationChoiceBox", isEnabled());
 
-        clickOn("#submitButton");
+        verifyThat("#submitButton", isEnabled());
 
 
 

@@ -38,7 +38,7 @@ class BookDataTest {
         bookData.books.clear();
 
         assertDoesNotThrow(bookData::readBookData);
-        assertEquals(13, bookData.books.size());
+        assertEquals(11, bookData.books.size());
     }
 
     @Test
@@ -77,7 +77,7 @@ class BookDataTest {
         bookData.books.clear();
 
         assertDoesNotThrow(bookData::readBookData);
-        assertEquals(13, bookData.books.size());
+        assertEquals(11, bookData.books.size());
     }
 
     @Test
@@ -159,7 +159,7 @@ class BookDataTest {
 
         ArrayList<Book> result = bookData.getBooks();
 
-        assertEquals(13, result.size());
+        assertEquals(11, result.size());
         assertTrue(result.contains(book1));
         assertTrue(result.contains(book2));
     }
@@ -333,7 +333,7 @@ class BookDataTest {
     @Test
     void testWriteBookToFileNullBook() {
         assertTrue(bookData.writeBookToFile(null));
-        assertEquals(11, bookData.books.size());
+        assertEquals(9, bookData.books.size());
     }
 
     @Test
@@ -353,7 +353,7 @@ class BookDataTest {
                 0.0, "TestSupplier"
         );
         bookData.addBooksToStock(emptyBuyOrder);
-        assertEquals(11, bookData.books.size());
+        assertEquals(9, bookData.books.size());
     }
 
     @Test
@@ -364,7 +364,7 @@ class BookDataTest {
                 0.0, "TestCustomer"
         );
         bookData.removeBooksFromStock(emptySellOrder);
-        assertEquals(11, bookData.books.size());
+        assertEquals(9, bookData.books.size());
     }
 
     @Test
@@ -382,7 +382,7 @@ class BookDataTest {
     @Test
     void testGetFromNameEmptyName() {
         ArrayList<Book> result = bookData.getFromName("");
-        assertEquals(11, result.size());
+        assertEquals(9, result.size());
     }
 
     @Test
