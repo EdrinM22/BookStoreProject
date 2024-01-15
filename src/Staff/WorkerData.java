@@ -1,3 +1,4 @@
+//WorkerData.java
 package Staff;
 import java.io.EOFException;
 import java.io.File;
@@ -34,121 +35,129 @@ public class WorkerData implements Serializable {
     File file ;
 
     public WorkerData() {
-     
-     file = new File("workers.dat");
-     workerData = new ArrayList<>();
-     readWorkerData();
+
+        file = new File("workers.dat");
+        workerData = new ArrayList<>();
+        readWorkerData();
     }
     public void readWorkerData() {
-        
+
         try(ObjectInputStream reader = new ObjectInputStream(new FileInputStream(file))) {
-			Worker worker;
-			while(true) {
-				worker = (Worker)reader.readObject();
+            Worker worker;
+            while(true) {
+                worker = (Worker)reader.readObject();
                 if (worker instanceof Librarian)
-				    workerData.add((Librarian)worker);
+                    workerData.add((Librarian)worker);
                 if (worker instanceof Manager)
-				    workerData.add((Manager)worker);
+                    workerData.add((Manager)worker);
                 if (worker instanceof Admin)
-				    workerData.add((Admin)worker);
-			}
-		} catch (EOFException e) {
-			System.out.println("Read all the books from the file");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Class not found");
-		} catch(IOException e) {
-			System.out.println("Error reading from file");
-		}
-        
-    
+                    workerData.add((Admin)worker);
+            }
+        } catch (EOFException e) {
+            System.out.println("Read all the books from the file");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found");
+        } catch(IOException e) {
+            System.out.println("Error reading from file");
+        }
+
+
     }
     public void deleteWorker(Worker worker) {
         workerData.remove(worker);
         rewirteFile(file);
     }
     public boolean rewirteFile(File file) {
-		try {
-			
-			FileOutputStream outputStream = new FileOutputStream(file);
-			ObjectOutputStream 	writer = new ObjectOutputStream(outputStream); 
-			for(Worker b : workerData) {
-				writer.writeObject(b);
-			}
-			writer.close();
-			return true;
-		} catch(IOException ex) {
-			return false;
-		}
-	}
-    public boolean writeWorkerToFile(Worker newWorker) {
-		try {
-			
-			FileOutputStream outputStream = new FileOutputStream(file, true);
-			ObjectOutputStream writer;
-			if (file.length() > 0)
-				writer = new HeaderlessObjectOutputStream(outputStream);
-			else
-				writer = new ObjectOutputStream(outputStream); 
-			writer.writeObject(newWorker);
-			writer.close();
-			return true;
-		} catch(IOException ex) {
-			return false;
-		}
-	}
-    public boolean writeAllData(File file){
-			try {
-                FileOutputStream outputStream = new FileOutputStream(file);
-                ObjectOutputStream writer= new ObjectOutputStream(outputStream); 
-                for (Worker worker : workerData) {
-                    writer.writeObject(worker);
-                }
-                writer.close();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        try {
+
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream 	writer = new ObjectOutputStream(outputStream);
+            for(Worker b : workerData) {
+                writer.writeObject(b);
             }
+            writer.close();
             return true;
+        } catch(IOException ex) {
+            return false;
+        }
+    }
+    public boolean writeWorkerToFile(Worker newWorker) {
+        try {
+
+            FileOutputStream outputStream = new FileOutputStream(file, true);
+            ObjectOutputStream writer;
+            if (file.length() > 0)
+                writer = new HeaderlessObjectOutputStream(outputStream);
+            else
+                writer = new ObjectOutputStream(outputStream);
+            writer.writeObject(newWorker);
+            writer.close();
+            return true;
+        } catch(IOException ex) {
+            return false;
+        }
+    }
+    public boolean writeAllData(File file){
+        try {
+            FileOutputStream outputStream = new FileOutputStream(file);
+            ObjectOutputStream writer= new ObjectOutputStream(outputStream);
+            for (Worker worker : workerData) {
+                writer.writeObject(worker);
+            }
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return true;
     }
 
     public void newWorkerForm(Stage primarystage, Worker workertemp) {
         Stage stage= new Stage();
         SettingStyles settingStyles= new SettingStyles();
-        
+
         TextField nameText=new TextField();
         nameText.setPromptText("name");
+        nameText.setId("nameField");
         nameText.setStyle(settingStyles.getLoginTextFieldStyle());
 
         TextField emailText=new TextField();
         emailText.setPromptText("email");
+        emailText.setId("emailField");
         emailText.setStyle(settingStyles.getLoginTextFieldStyle());
 
         TextField phoneText=new TextField();
         phoneText.setPromptText("phone number");
+        phoneText.setId("phoneField");
         phoneText.setStyle(settingStyles.getLoginTextFieldStyle());
-       
+
         TextField salaryText=new TextField();
         salaryText.setPromptText("salary");
+        salaryText.setId("salaryField");
         salaryText.setStyle(settingStyles.getLoginTextFieldStyle());
 
         //Text Field for Phone
         PasswordField passwordText=new PasswordField();
         passwordText.setPromptText("password");
-        passwordText.setStyle(settingStyles.getLoginTextFieldStyle()); 
+        passwordText.setId("passwordField");
+        passwordText.setStyle(settingStyles.getLoginTextFieldStyle());
 
 
         //date picker to choose date
         DatePicker datePicker=new DatePicker();
         datePicker.setPromptText("Date of birth");
+        datePicker.setId("datePicker");
         datePicker.setStyle(settingStyles.getDatePicker());
         datePicker.setPrefWidth(270);
 
         //Toggle group of radio button
         ToggleGroup groupGender=new ToggleGroup();
         RadioButton maleRadio=new RadioButton("male");
+        maleRadio.setId("maleRadio");
         maleRadio.setStyle(settingStyles.getRadioBtn());
         maleRadio.setToggleGroup(groupGender);
         RadioButton femaleRadio=new RadioButton("female");
+        femaleRadio.setId("femaleRadio");
         femaleRadio.setStyle(settingStyles.getRadioBtn());
         femaleRadio.setToggleGroup(groupGender);
         HBox radioBox=new HBox(20);
@@ -161,11 +170,13 @@ public class WorkerData implements Serializable {
         javaCheckBox.setIndeterminate(false);
         CheckBox checkLibrariansCheckBox=new CheckBox("CheckLibrarians");
         javaCheckBox.setIndeterminate(false);
-    
+
         GridPane gridPane=new GridPane();
         //Choice box for location
         ChoiceBox locationChoiceBox=new ChoiceBox();
         locationChoiceBox.getItems().addAll("Librarian","Manager","Administrator");
+        locationChoiceBox.setId("locationChoiceBox");
+
         //locationChoiceBox.setValue("Librarian");
         locationChoiceBox.setStyle(settingStyles.getSearchListStyle());
         //setOnMouseEntered
@@ -188,8 +199,9 @@ public class WorkerData implements Serializable {
 
         //Label for register
         Button buttonRegister=new Button("Register");
-        
-       buttonRegister.setOnMouseClicked(event ->{
+        buttonRegister.setId("submitButton");
+
+        buttonRegister.setOnMouseClicked(event ->{
             String name=nameText.getText();
             String email=emailText.getText();
             String phone=phoneText.getText();
@@ -206,30 +218,30 @@ public class WorkerData implements Serializable {
             permitionToBill=javaCheckBox.isSelected();
             permitionToPurchase=PurchaseBooksCheckBox.isSelected();
             permitionToCheckLibrarians=checkLibrariansCheckBox.isSelected();
-           
-          if (admin){
-            Worker worker=new Admin(name,phone,email,salary,date,gender,password,ACCESSLEVEL.ADMIN);
-            writeWorkerToFile(worker);
-            workerData.add(worker);
-            stage.close();
-           
-        }
-        else if(manager){
-            Worker worker=new Manager(name,phone,email,salary,date,gender,password,ACCESSLEVEL.MANAGER,permitionToPurchase,permitionToCheckLibrarians);
-            writeWorkerToFile(worker);
-            workerData.add(worker);
-            stage.close();
-        }
-        else if(librarian){
-            Worker worker=new Librarian(name,phone,email,date,gender,salary,password,ACCESSLEVEL.LIBRARIAN,permitionToBill);
-            writeWorkerToFile(worker);
-            workerData.add(worker);
-            stage.close();
-        }
-        primarystage.setScene(new Scene(new MainPage(primarystage, workertemp).getRoot(),800, 600));
-        primarystage.setFullScreen(true);
+
+            if (admin){
+                Worker worker=new Admin(name,phone,email,salary,date,gender,password,ACCESSLEVEL.ADMIN);
+                writeWorkerToFile(worker);
+                workerData.add(worker);
+                stage.close();
+
+            }
+            else if(manager){
+                Worker worker=new Manager(name,phone,email,salary,date,gender,password,ACCESSLEVEL.MANAGER,permitionToPurchase,permitionToCheckLibrarians);
+                writeWorkerToFile(worker);
+                workerData.add(worker);
+                stage.close();
+            }
+            else if(librarian){
+                Worker worker=new Librarian(name,phone,email,date,gender,salary,password,ACCESSLEVEL.LIBRARIAN,permitionToBill);
+                writeWorkerToFile(worker);
+                workerData.add(worker);
+                stage.close();
+            }
+            primarystage.setScene(new Scene(new MainPage(primarystage, workertemp).getRoot(),800, 600));
+            primarystage.setFullScreen(true);
         });
-        
+
 
         //Setting size for pane
         gridPane.setMinSize(500,600);
@@ -245,7 +257,7 @@ public class WorkerData implements Serializable {
         gridPane.setAlignment(Pos.CENTER);
 
         //Arranging all the nodes in the grid
-       
+
         gridPane.add(nameText,1,0);
         gridPane.add(emailText,1,1);
         gridPane.add(phoneText,1,2);
@@ -258,7 +270,7 @@ public class WorkerData implements Serializable {
 
         //Styling nodes
         buttonRegister.setStyle(settingStyles.getLogOutBtnStyle());
-    
+
 
         //Setting the background color
         gridPane.setStyle(settingStyles.getLoginRootStyle());
@@ -266,7 +278,7 @@ public class WorkerData implements Serializable {
         //Creating a scene object
         Scene scene=new Scene(gridPane,700,800);
 
-       
+
         //Setting the title of stage
         stage.setTitle("Registration Form");
 
@@ -276,27 +288,27 @@ public class WorkerData implements Serializable {
         //Displaying the contents of the stage
         stage.show();
 
- }
- public void editWorker(Worker worker,String name,String Email,ACCESSLEVEL accesslevel,float d, String phone,boolean permitionToCheckLibrarians ,boolean permitionToPurchase,boolean permitionToBill){
-         if(accesslevel.equals(ACCESSLEVEL.LIBRARIAN)){
-                Librarian librarian=new Librarian(name, phone, Email, worker.getDateOfBirth(), worker.getGender(), d, worker.getPassword(), ACCESSLEVEL.LIBRARIAN, permitionToBill);
-                workerData.remove(worker);
-                workerData.add(librarian);
-                
-            }
-            else if(accesslevel.equals(ACCESSLEVEL.MANAGER)){
-                Manager manager=new Manager(name, phone, Email, d, worker.getDateOfBirth(), worker.getGender(), worker.getPassword(), ACCESSLEVEL.MANAGER, permitionToPurchase, permitionToCheckLibrarians);
-                workerData.remove(worker);
-                workerData.add(manager);
-            }else{
-                Admin admin=new Admin(name, phone, Email, d, worker.getDateOfBirth(), worker.getGender(), worker.getPassword(), ACCESSLEVEL.ADMIN);
-                workerData.remove(worker);
-                workerData.add(admin);
-            }
+    }
+    public void editWorker(Worker worker,String name,String Email,ACCESSLEVEL accesslevel,float d, String phone,boolean permitionToCheckLibrarians ,boolean permitionToPurchase,boolean permitionToBill){
+        if(accesslevel.equals(ACCESSLEVEL.LIBRARIAN)){
+            Librarian librarian=new Librarian(name, phone, Email, worker.getDateOfBirth(), worker.getGender(), d, worker.getPassword(), ACCESSLEVEL.LIBRARIAN, permitionToBill);
+            workerData.remove(worker);
+            workerData.add(librarian);
 
-         rewirteFile(file);
- }
-   
+        }
+        else if(accesslevel.equals(ACCESSLEVEL.MANAGER)){
+            Manager manager=new Manager(name, phone, Email, d, worker.getDateOfBirth(), worker.getGender(), worker.getPassword(), ACCESSLEVEL.MANAGER, permitionToPurchase, permitionToCheckLibrarians);
+            workerData.remove(worker);
+            workerData.add(manager);
+        }else{
+            Admin admin=new Admin(name, phone, Email, d, worker.getDateOfBirth(), worker.getGender(), worker.getPassword(), ACCESSLEVEL.ADMIN);
+            workerData.remove(worker);
+            workerData.add(admin);
+        }
+
+        rewirteFile(file);
+    }
+
     public ArrayList<Worker> getData(){
         return workerData;
     }
@@ -310,12 +322,12 @@ public class WorkerData implements Serializable {
         return librarians;
     }
     public Worker getWorkerFromEmail(String eamil){
-         for (Worker worker:workerData){
-             if (worker.getEmail().equals(eamil)){
-                 return worker;
-             }
-         }
-          return null;
+        for (Worker worker:workerData){
+            if (worker.getEmail().equals(eamil)){
+                return worker;
+            }
+        }
+        return null;
     }
     public Worker getWorker(int index){
         return workerData.get(index);
