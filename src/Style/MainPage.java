@@ -117,12 +117,16 @@ public class MainPage{
 
         Text name = new Text(worker.getFullName());
         name.setStyle(styles.getMainPagePersonalInfoStyle());
+        name.setId("nameField");
         Text email = new Text(worker.getEmail());
         email.setStyle(styles.getMainPagePersonalInfoStyle());
+        email.setId("emailField");
         Text phone = new Text(worker.getPhone());
         phone.setStyle(styles.getMainPagePersonalInfoStyle());
+        phone.setId("phoneField");
         Text status = new Text(worker.getACCESSLEVEL().toString());
         status.setStyle(styles.getMainPagePersonalInfoStyle());
+        status.setId("statusField");
         
         PersonalInfo.getChildren().addAll(circle, name, email, phone, status);
         PersonalInfo.setStyle(styles.getMainPageLeftPaneStyle());
