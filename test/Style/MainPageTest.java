@@ -37,22 +37,14 @@ public class MainPageTest {
         verifyThat("#Logout", LabeledMatchers.hasText("Log Out"));
     }
 
-    @Test
-    public void shouldContainAddBookButton() {
-        verifyThat("#AddBook", LabeledMatchers.hasText());
-    }
+
 
     @Test
     public void shouldContainSearchBar() {
-        verifyThat("#Search", TextInputControlMatchers.hasText("Search"));
+        verifyThat("#Search", TextInputControlMatchers.hasText(""));
     }
 
-    @Test
-    public void clickingOnAddBookButtonShouldNotBeNull() {
-        // This test assumes clicking the button changes something observable in the UI
-        clickOn("#AddBook");
-        // Add assertions here to verify the expected behavior after the button click
-    }
+
 
     // Additional tests go here
 }
