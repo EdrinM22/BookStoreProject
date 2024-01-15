@@ -69,22 +69,27 @@ public class BookData implements Serializable {
 		TextField titleTF = new TextField();
 		titleTF.setStyle(settingStyles.getLoginTextFieldStyle());
 		titleTF.setPromptText("Title");
+		titleTF.setId("titleField");
 		Label titleLbl = new Label("Title");
 		
 		TextField isbnTF = new TextField();
 		isbnTF.setStyle(settingStyles.getLoginTextFieldStyle());
 		isbnTF.setPromptText("ISBN 13");
+		isbnTF.setId("isbnField");
 		Label isbnLbl = new Label("ISBN 13");
 		
 		TextField priceTF = new TextField();
 		priceTF.setStyle(settingStyles.getLoginTextFieldStyle());
 		priceTF.setPromptText("Price");
+		priceTF.setId("priceField");
 		Label priceLbl = new Label("Price");
 		
 		Label versionLbl = new Label("Version");
 		RadioButton rbPaperback = new RadioButton("Paperback");
+		rbPaperback.setId("paperbackRadio");
 		rbPaperback.setStyle(settingStyles.getRadioBtn());
 		RadioButton rbEbook = new RadioButton("E-book");
+		rbEbook.setId("ebookRadio");
 		rbEbook.setStyle(settingStyles.getRadioBtn());
 		ToggleGroup group = new ToggleGroup();
 		rbPaperback.setToggleGroup(group);
@@ -98,12 +103,14 @@ public class BookData implements Serializable {
 		descriptionTA.setPrefColumnCount(20);
 		descriptionTA.setPrefRowCount(5);
 		descriptionTA.setWrapText(true);
+		descriptionTA.setId("descriptionField");
 		
 		
 		Label authosLbl = new Label("Select an author: ");
 		TextField authorTF = new TextField();
 		authorTF.setStyle(settingStyles.getLoginTextFieldStyle());
 		authorTF.setPromptText("Author");
+		authorTF.setId("authorField");
 		// genres
 		VBox paneForGenres = new VBox(10);
 		paneForGenres.setPadding(new Insets(4));
@@ -115,6 +122,7 @@ public class BookData implements Serializable {
 		Label genreLbl = new Label("Genres: ");
 		
 		Button submitBtn = new Button("Submit");
+		submitBtn.setId("submitButton");
 		submitBtn.setStyle(settingStyles.getLogOutBtnStyle());
 
 		submitBtn.setOnAction(e -> {

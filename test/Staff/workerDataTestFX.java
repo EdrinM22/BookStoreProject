@@ -44,7 +44,7 @@ class WorkerDataTestFX extends ApplicationTest {
         clickOn("#locationChoiceBox").clickOn("Librarian");
 
         verifyThat("#submitButton", isEnabled());
-//it works it just adds a new worker to the main database
+
     }
 
     @Test
