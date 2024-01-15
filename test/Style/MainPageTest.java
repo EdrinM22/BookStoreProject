@@ -33,7 +33,7 @@ class MainPageTest extends ApplicationTest {
         Librarian librarian = new Librarian("John Doe", "123-456-7890", "john@example.com", "01-01-1990",
                 Gender.MALE, 5000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
         mainPage = new MainPage(stage, librarian);
-        stage.setScene(new Scene(mainPage.getRoot(), 800, 600));
+        stage.setScene(new Scene(mainPage.getRoot()));
         stage.show();
     }
 
