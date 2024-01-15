@@ -1,192 +1,127 @@
 package Staff;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.io.TempDir;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
-class WorkerDataTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-//    @TempDir
-//    File tempDir;
-//
-//    private WorkerData workerData;
-//
-//    @BeforeEach
-//    void setUp() {
-//        File tempFile = new File(tempDir, "Testworkers.dat");
-//        workerData = new WorkerData();
-//        workerData.file = tempFile;
-//        workerData.workerData = new ArrayList<>();
-//    }
-//
-//    @Test
-//    void testReadWorkerData() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        assertTrue(workerData.writeWorkerToFile(testLibrarian));
-//
-//        assertDoesNotThrow(() -> workerData.readWorkerData());
-//        assertEquals(1, workerData.workerData.size());
-//        assertEquals(testLibrarian, workerData.workerData.get(0));
-//    }
-//
-//    @Test
-//    void testDeleteWorker() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        workerData.workerData.add(testLibrarian);
-//        workerData.deleteWorker(testLibrarian);
-//
-//        assertEquals(0, workerData.workerData.size());
-//    }
-//
-//    @Test
-//    void testRewriteFile() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        workerData.workerData.add(testLibrarian);
-//
-//        assertTrue(workerData.rewirteFile(tempDir));
-//
-//        assertDoesNotThrow(() -> workerData.readWorkerData());
-//        assertEquals(1, workerData.workerData.size());
-//    }
-//
-//    @Test
-//    void testWriteWorkerToFile() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        assertTrue(workerData.writeWorkerToFile(testLibrarian));
-//
-//        assertDoesNotThrow(() -> workerData.readWorkerData());
-//        assertEquals(1, workerData.workerData.size());
-//        assertEquals(testLibrarian, workerData.workerData.get(0));
-//    }
-//
-//    @Test
-//    void testWriteAllData() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        Manager testManager = new Manager("JaneDoe", "9876543210", "jane@example.com",
-//                2500.0f, "2000-02-01", Gender.FEMALE, "password", Worker.ACCESSLEVEL.MANAGER, true, false);
-//
-//        Admin testAdmin = new Admin("AdminUser", "5555555555", "admin@example.com",
-//                3000.0f, "2000-03-01", Gender.MALE, "admin_password", Worker.ACCESSLEVEL.ADMIN);
-//
-//        workerData.workerData.add(testLibrarian);
-//        workerData.workerData.add(testManager);
-//        workerData.workerData.add(testAdmin);
-//
-//        assertTrue(workerData.writeAllData());
-//
-//        assertDoesNotThrow(() -> workerData.readWorkerData());
-//        assertEquals(3, workerData.workerData.size());
-//        assertTrue(workerData.workerData.contains(testLibrarian));
-//        assertTrue(workerData.workerData.contains(testManager));
-//        assertTrue(workerData.workerData.contains(testAdmin));
-//    }
-//
-//    @Test
-//    void testNewWorkerForm() {
-//        // TODO: Add tests for the newWorkerForm method
-//    }
-//
-//    @Test
-//    void testEditWorker() {
-//        // TODO: Add tests for the editWorker method
-//    }
-//
-//    @Test
-//    void testGetData() {
-//        Librarian testLibrarian = new Librarian("JohnDoe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        Manager testManager = new Manager("JaneDoe", "9876543210", "jane@example.com",
-//                2500.0f, "2000-02-01", Gender.FEMALE, "password", Worker.ACCESSLEVEL.MANAGER, true, false);
-//
-//        Admin testAdmin = new Admin("AdminUser", "5555555555", "admin@example.com",
-//                3000.0f, "2000-03-01", Gender.MALE, "admin_password", Worker.ACCESSLEVEL.ADMIN);
-//
-//        workerData.workerData.add(testLibrarian);
-//        workerData.workerData.add(testManager);
-//        workerData.workerData.add(testAdmin);
-//
-//        ArrayList<Worker> result = workerData.getData();
-//
-//        assertEquals(3, result.size());
-//        assertTrue(result.contains(testLibrarian));
-//        assertTrue(result.contains(testManager));
-//        assertTrue(result.contains(testAdmin));
-//    }
-//
-//    @Test
-//    void testGetLibrarians() {
-//        Librarian librarian1 = new Librarian("Librarian1", "1234567890", "librarian1@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        Librarian librarian2 = new Librarian("Librarian2", "9876543210", "librarian2@example.com",
-//                "2000-02-01", Gender.FEMALE, 2500.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, false);
-//
-//        Manager manager = new Manager("ManagerTest", "5555555555", "manager@example.com",
-//                3000.0f, "2000-03-01", Gender.MALE, "manager_password", Worker.ACCESSLEVEL.MANAGER, true, false);
-//
-//        workerData.workerData.add(librarian1);
-//        workerData.workerData.add(librarian2);
-//        workerData.workerData.add(manager);
-//
-//        ArrayList<Librarian> result = workerData.getLibrarians();
-//
-//        assertEquals(2, result.size());
-//        assertTrue(result.contains(librarian1));
-//        assertTrue(result.contains(librarian2));
-//        assertFalse(result.contains(manager));
-//    }
-//
-//    @Test
-//    void testGetWorkerFromEmail() {
-//        Librarian librarian = new Librarian("LibrarianTest", "1234567890", "librarian@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        Manager manager = new Manager("ManagerTest", "9876543210", "manager@example.com",
-//                2500.0f, "2000-02-01", Gender.FEMALE, "password", Worker.ACCESSLEVEL.MANAGER, true, false);
-//
-//        Admin admin = new Admin("AdminTest", "5555555555", "admin@example.com",
-//                3000.0f, "2000-03-01", Gender.MALE, "admin_password", Worker.ACCESSLEVEL.ADMIN);
-//
-//        workerData.workerData.add(librarian);
-//        workerData.workerData.add(manager);
-//        workerData.workerData.add(admin);
-//
-//        Worker result = workerData.getWorkerFromEmail("manager@example.com");
-//
-//        assertEquals(manager, result);
-//    }
-//
-//    @Test
-//    void testGetWorker() {
-//        Librarian testLibrarian = new Librarian("John Doe", "1234567890", "john@example.com",
-//                "2000-01-01", Gender.MALE, 2000.0f, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
-//
-//        workerData.workerData.add(testLibrarian);
-//
-//        Worker result = workerData.getWorker(0);
-//
-//        assertEquals(testLibrarian, result);
-//    }
-//
-//    @Test
-//    void testGetWorkerInvalidIndex() {
-//        assertThrows(IndexOutOfBoundsException.class, () -> workerData.getWorker(5));
-//    }
-//    Destroys the worker database after running this test and idk why
+class WorkerDataTest extends ApplicationTest {
+
+    private WorkerData workerData;
+    private File testFile;
+
+    @TempDir
+    Path tempDir; // JUnit 5 provides a temporary directory
+
+    @BeforeEach
+    void setUp(TestInfo testInfo) {
+        // Initialize the testFile and WorkerData
+        String testName = testInfo.getTestMethod().get().getName();
+        testFile = tempDir.resolve(testName + "_testWorkers.dat").toFile();
+        workerData = new WorkerData();
+        workerData.file = testFile;
+        workerData.workerData = new ArrayList<>();
+    }
+
+    @AfterEach
+    void tearDown() {
+        // Clean up after each test
+        workerData.workerData.clear();
+    }
+
+    @Test
+    void testReadWorkerData() {
+        // Add test data to the file
+        Worker testWorker = new Librarian("Test Librarian", "123456789", "test@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        workerData.writeWorkerToFile(testWorker);
+
+        // Read the data
+        workerData.readWorkerData();
+
+        // Assert that the data has been read correctly
+        assertEquals(1, workerData.workerData.size());
+        assertEquals("Test Librarian", workerData.workerData.get(0).getFullName());
+    }
+
+    @Test
+    void testDeleteWorker() {
+        // Add a worker to the list
+        Worker testWorker = new Librarian("Test Librarian", "123456789", "test@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        workerData.workerData.add(testWorker);
+
+        // Delete the worker
+        workerData.deleteWorker(testWorker);
+
+        // Assert that the worker has been deleted
+        assertEquals(0, workerData.workerData.size());
+    }
+
+    @Test
+    void testWriteWorkerToFile() {
+        // Add a worker to the list
+        Worker testWorker = new Librarian("Test Librarian", "123456789", "test@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        workerData.workerData.add(testWorker);
+
+        // Write the data to the file
+        workerData.rewirteFile(testFile);
+
+        // Read the data from the file
+        workerData.readWorkerData();
+
+        // Assert that the data has been written and read correctly
+        assertEquals(2, workerData.workerData.size());
+        assertEquals("Test Librarian", workerData.workerData.get(0).getFullName());
+    }
+    @Test
+    void testDeleteNonExistingWorker() {
+        Worker nonExistingWorker = new Librarian("Non Existing", "123456789", "nonexisting@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        workerData.deleteWorker(nonExistingWorker);
+        assertEquals(0, workerData.workerData.size());
+    }
+    @Test
+    void testRewriteFile() {
+        // Add a worker to the list
+        Worker testWorker = new Librarian("Test Librarian", "123456789", "test@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        workerData.workerData.add(testWorker);
+
+        // Write the data to the file
+        assertTrue(workerData.rewirteFile(testFile));
+
+        // Read the data from the file
+        workerData.readWorkerData();
+
+        // Assert that the data has been written and read correctly
+        assertEquals(2, workerData.workerData.size());
+        assertEquals("Test Librarian", workerData.workerData.get(0).getFullName());
+    }
+
+    @Test
+    void testWriteAllData() {
+        // Add test data to the list
+        Worker testWorker1 = new Librarian("Librarian 1", "123456789", "librarian1@example.com", "01-01-2000", Gender.MALE, 2000.0F, "password", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        Worker testWorker2 = new Manager("Manager 1", "987654321", "manager1@example.com", 2500.0F, "01-02-2000", Gender.FEMALE, "password", Worker.ACCESSLEVEL.MANAGER, true, false);
+        workerData.workerData.add(testWorker1);
+        workerData.workerData.add(testWorker2);
+
+        // Write all data to the file
+        assertTrue(workerData.writeAllData(testFile));
+
+        // Read the data from the file
+        workerData.readWorkerData();
+
+        // Assert that the data has been written and read correctly
+        assertEquals(4, workerData.workerData.size());
+        assertEquals("Librarian 1", workerData.workerData.get(0).getFullName());
+        assertEquals("Manager 1", workerData.workerData.get(1).getFullName());
+    }
+
 }

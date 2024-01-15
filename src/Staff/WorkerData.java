@@ -96,10 +96,9 @@ public class WorkerData implements Serializable {
 			return false;
 		}
 	}
-    public boolean writeAllData(){
-        File booksFile = new File("workers.dat");
+    public boolean writeAllData(File file){
 			try {
-                FileOutputStream outputStream = new FileOutputStream(booksFile);
+                FileOutputStream outputStream = new FileOutputStream(file);
                 ObjectOutputStream writer= new ObjectOutputStream(outputStream); 
                 for (Worker worker : workerData) {
                     writer.writeObject(worker);
