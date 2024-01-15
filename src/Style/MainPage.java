@@ -438,6 +438,7 @@ public class MainPage{
                 System.out.println(TotalBookPrice);
                 grid.add(total, 1, 1);
                 Label totalLabel = new Label("Total: " + TotalBookPrice);
+                totalLabel.setId("TotalLabel");
                 totalLabel.setStyle(styles.getSalesLabel());
                 if(TotalLabelHbox.getChildren().size() != 0){
                     TotalLabelHbox.getChildren().clear();
