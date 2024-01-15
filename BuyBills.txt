@@ -1,11 +1,11 @@
 BuyBill
-TestSupplier    : Mon Jan 15 20:05:37 CET 2024
+TestSupplier    : Mon Jan 15 22:58:03 CET 2024
 ISBN-> 1234567890123
-	Quantity 5
+	Quantity 3
 
 ISBN-> 9876543210123
-	Quantity 10
+	Quantity 8
 
 ---------------------------
-		Total Books: 15 
+		Total Books: 11 
 		Total Price: 0.0 		

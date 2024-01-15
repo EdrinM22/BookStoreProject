@@ -72,19 +72,15 @@ class PurchaseOrdersTest {
         quantities.add(5);
         quantities.add(10);
 
-        // Create PurchaseOrders instance
         PurchaseOrders purchaseOrder = new PurchaseOrders(isbns, quantities, 150.0, "Supplier");
 
-        // Create temporary files within the temporary directory
         File file = new File(tempDir, "testPurchaseBills.txt");
         File purchaseFile = new File(tempDir, "testPurchaseBillData.dat");
         purchaseOrder.file = file;
         purchaseOrder.purchasefile = purchaseFile;
 
-        // Perform the write operation
         assertDoesNotThrow(purchaseOrder::writeToFile);
 
-        // Verify the content of the written file
         try (Scanner scanner = new Scanner(file)) {
             assertEquals("PurchaseBill", scanner.nextLine().trim());
             assertTrue(scanner.nextLine().contains("Supplier"));

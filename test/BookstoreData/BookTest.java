@@ -69,7 +69,6 @@ class BookTest {
         assertFalse(book.getGenres().isEmpty());
     }
 
-    // Add more tests for edge cases and remaining branches
 
     @Test
     void testGetGenres() {
@@ -113,7 +112,6 @@ class BookTest {
         assertEquals(10, book.getStockInt());
     }
 
-    // Add more tests to cover the remaining branches in the Book class
 
     @Test
     void testSetIsbn13() {
@@ -136,7 +134,6 @@ class BookTest {
         assertEquals("New Author", book.getAuthor());
     }
 
-    // Add more tests for the remaining setter methods
 
     @Test
     void testToString() {
