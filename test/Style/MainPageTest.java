@@ -88,6 +88,7 @@ class MainPageTest extends ApplicationTest {
     void createMainPage() {
         assertNotNull(mainPage);
         assertNotNull(mainPage.getRoot());
+        verifyThat("#BookTable",NodeMatchers.isVisible());
     }
     @Test
     void testAddToStockButtonOpensNewWindow() {
@@ -100,16 +101,51 @@ class MainPageTest extends ApplicationTest {
         verifyThat("#Employees",NodeMatchers.isEnabled());
         clickOn("#Employees");
         verifyThat("#WorkerTable", NodeMatchers.isVisible());
+
         verifyThat("#nameField", NodeMatchers.isVisible());
+        verifyThat("#nameField", hasText("Bob Johnson"));
+
         verifyThat("#emailField", NodeMatchers.isVisible());
+        verifyThat("#emailField", hasText("bob@example.com"));
+
         verifyThat("#phoneField", NodeMatchers.isVisible());
+        verifyThat("#phoneField", hasText("987-654-3210"));
+
         verifyThat("#statusField", NodeMatchers.isVisible());
+        verifyThat("#statusField", hasText("ADMIN"));
+
         doubleClickOn("Xhensil Gjini");
         verifyThat("#EditWorker", NodeMatchers.isEnabled());
         verifyThat("#DeleteWorker", NodeMatchers.isEnabled());
+
         verifyThat("#WorkerFull", NodeMatchers.isVisible());
+        verifyThat("#WorkerFull", hasText("Xhensil Gjini"));
+
         verifyThat("#WorkerPhone", NodeMatchers.isVisible());
+        verifyThat("#WorkerPhone", hasText("0692893424"));
+        doubleClickOn("#WorkerPhone");
+        verifyThat("#NewPhone", NodeMatchers.isVisible());
+        clickOn("#NewPhone").write("Example");
+        verifyThat("#NewPhone", hasText("Example"));
+
+
         verifyThat("#WorkerSalary", NodeMatchers.isVisible());
+        verifyThat("#WorkerSalary", hasText("200000.0"));
+        doubleClickOn("#WorkerSalary");
+        verifyThat("#NewSalary", NodeMatchers.isVisible());
+        clickOn("#NewSalary").write("Example");
+        verifyThat("#NewSalary", hasText("Example"));
+
+
         verifyThat("#WorkerEmail", NodeMatchers.isVisible());
+        verifyThat("#WorkerEmail", hasText("xgjini21@epoka.edu.al"));
+        doubleClickOn("#WorkerEmail");
+        verifyThat("#NewEmail", NodeMatchers.isVisible());
+        clickOn("#NewEmail").write("Example");
+        verifyThat("#NewEmail", hasText("Example"));
+
+
+        clickOn("Books");
+        verifyThat("#BookTable",NodeMatchers.isVisible());
     }
 }

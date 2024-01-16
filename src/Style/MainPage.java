@@ -170,7 +170,7 @@ public class MainPage{
         tabPane.getTabs().add(BookTab);
         //bookTableView = showTable(0, "Title", "Author", "Price", "Stock","Isbn13","Paperback");
         bookTableView = MainController.bookTable(books, primaryStage, "Title", "Author", "Price", "Stock","Isbn13","Paperback");
-        
+        bookTableView.setId("BookTable");
 
 
         HBox bookBottomPane = new HBox(20);

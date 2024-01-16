@@ -71,6 +71,7 @@ class MainPageTestManager extends ApplicationTest {
     @Test
     void getRoot() {
         assertNotNull(mainPage.getRoot());
+        verifyThat("#BookTable",NodeMatchers.isVisible());
     }
 
     @Test
