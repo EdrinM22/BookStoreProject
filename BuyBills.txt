@@ -1,5 +1,5 @@
 BuyBill
-TestSupplier    : Mon Jan 15 23:43:38 CET 2024
+TestSupplier    : Tue Jan 16 17:14:49 CET 2024
 ISBN-> 1234567890123
 	Quantity 3
 

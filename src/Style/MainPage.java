@@ -8,6 +8,7 @@ import Orders.PurchaseOrders;
 import Staff.*;
 import Staff.Worker.ACCESSLEVEL;
 import StyleControllers.MainController;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -113,7 +115,7 @@ public class MainPage{
         }
 
         Circle circle = new Circle(125, 125, 125);
-        circle.setFill(new javafx.scene.paint.ImagePattern(profileImage));
+        circle.setFill(new ImagePattern(profileImage));
 
         Text name = new Text(worker.getFullName());
         name.setStyle(styles.getMainPagePersonalInfoStyle());
@@ -153,7 +155,7 @@ public class MainPage{
 
         top.getChildren().addAll(searchBox, LogOutBtn);
         top.setAlignment(Pos.TOP_RIGHT);
-        top.setPadding(new javafx.geometry.Insets(10, 10, 10, 0));
+        top.setPadding(new Insets(10, 10, 10, 0));
         root.setTop(top);
        
 
@@ -172,7 +174,7 @@ public class MainPage{
 
 
         HBox bookBottomPane = new HBox(20);
-        bookBottomPane.setPadding(new javafx.geometry.Insets(10, 10, 10, 0));
+        bookBottomPane.setPadding(new Insets(10, 10, 10, 0));
         bookBottomPane.setStyle(styles.getBtnPane());
         addBookBtn = new Button("Add Book");
         addBookBtn.setId("AddBook");
@@ -197,6 +199,7 @@ public class MainPage{
         //Employee Tab
     
         Tab EmployeeTab = new Tab("Employees");
+        EmployeeTab.setId("Employees");
         EmployeeTab.setStyle(styles.getBookTableStyle());
         EmployeeTab.setClosable(false);
 
@@ -212,9 +215,9 @@ public class MainPage{
         tabPane.getTabs().add(EmployeeTab);
 
         workerTableView = MainController.workerTable(workers, worker, primaryStage, "FullName", "Email", "Phone", "Status","dateOfBirth", "salary");
-
+        workerTableView.setId("WorkerTable");
         HBox workerBottomPane = new HBox(20);
-        workerBottomPane.setPadding(new javafx.geometry.Insets(10, 10, 10, 0));
+        workerBottomPane.setPadding(new Insets(10, 10, 10, 0));
         workerBottomPane.setStyle(styles.getBtnPane());
 
         addWorkerBtn = new Button("Add Worker");
@@ -299,7 +302,13 @@ public class MainPage{
                         quantity.add(Integer.parseInt(t.getText()));
                     }
                 }
+
             }
+            Dialog<String> addToStockDialog = new Dialog<>();
+            addToStockDialog.setTitle("Add to Stock");
+            addToStockDialog.setHeaderText("Books added");
+            addToStockDialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            addToStockDialog.showAndWait();
 
             books.addBooksToStock(new BuyOrders(bookIsbns, quantity,TotalBookPrice,worker.getFullName()));
             BookInfoHolder.getChildren().clear();
@@ -466,6 +475,7 @@ public class MainPage{
         grid.setVgap(20);
 
         workerFullName = new Label(tempworker.getFullName());
+        workerFullName.setId("WorkerFull");
         workerFullName.setStyle(styles.getSalesLabel());
         TextField newName = new TextField();
         newName.setId("NewName");
@@ -476,6 +486,7 @@ public class MainPage{
         Label totalBuys= new Label("Bought : "+tempworker.getTotalBuys());
         totalBuys.setStyle(styles.getSalesLabel());
         workerEmail = new Label(tempworker.getEmail());
+        workerEmail.setId("WorkerEmail");
         workerEmail.setStyle(styles.getSalesLabel());
         TextField newEmail = new TextField();
         newEmail.setId("NewEmail");
@@ -531,12 +542,14 @@ public class MainPage{
 
 
         workerSalary = new Label("" + tempworker.getSalary());
+        workerSalary.setId("WorkerSalary");
         workerSalary.setStyle(styles.getSalesLabel());
         TextField newSalary = new TextField();
         newSalary.setId("NewSalary");
         newSalary.setStyle(styles.getLoginTextFieldStyle());
 
         workerPhoneNumber = new Label(tempworker.getPhone());
+        workerPhoneNumber.setId("WorkerPhone");
         workerPhoneNumber.setStyle(styles.getSalesLabel());
         TextField newPhoneNumber = new TextField();
         newPhoneNumber.setId("NewPhone");

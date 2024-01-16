@@ -2,6 +2,7 @@ package Style;
 
 import Staff.Admin;
 import Staff.Gender;
+import Staff.Librarian;
 import Staff.Worker;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -21,12 +22,12 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-class MainPageTest extends ApplicationTest {
+class mainPageTestLibrarian extends ApplicationTest {
     private MainPage mainPage;
     @Start
     public void start(Stage stage) {
-        Admin admin = new Admin("Bob Johnson", "987-654-3210", "bob@example.com", 60000.0f, "1995-05-05", Gender.MALE, "adminPass123", Worker.ACCESSLEVEL.ADMIN);
-        mainPage = new MainPage(stage, admin);
+        Librarian librarian = new Librarian("Alice Smith", "123-456-7890", "alice@example.com", "1990-01-01", Gender.FEMALE, 50000.0f, "password123", Worker.ACCESSLEVEL.LIBRARIAN, true);
+        mainPage = new MainPage(stage, librarian);
         stage.setScene(new Scene(mainPage.getRoot()));
         stage.show();
     }
@@ -45,7 +46,7 @@ class MainPageTest extends ApplicationTest {
 
     @Test
     public void shouldEnableAddWorkerButtonForAdmin() {
-        verifyThat("#AddWorker", NodeMatchers.isEnabled());
+        verifyThat("#AddWorker", NodeMatchers.isDisabled());
     }
 
     @Test
@@ -58,14 +59,18 @@ class MainPageTest extends ApplicationTest {
 
     @Test
     public void shouldEnableAddBookButtonForAdmin() {
-        verifyThat("#AddBook", NodeMatchers.isEnabled());
+        verifyThat("#AddBook", NodeMatchers.isDisabled());
     }
 
     @Test
     public void shouldDisableAddStockButtonForAdmin() {
-        verifyThat("#AddBookStock", NodeMatchers.isEnabled());
+        verifyThat("#AddBookStock", NodeMatchers.isDisabled());
     }
 
+    @Test
+    public void shouldPurchaseForAdmin() {
+        verifyThat("#PurchaseBook", NodeMatchers.isEnabled());
+    }
 
     @Test
     void getRoot() {
@@ -96,20 +101,6 @@ class MainPageTest extends ApplicationTest {
     }
     @Test
     void EmployeeButtonTest(){
-        verifyThat("#Employees",NodeMatchers.isVisible());
         verifyThat("#Employees",NodeMatchers.isEnabled());
-        clickOn("#Employees");
-        verifyThat("#WorkerTable", NodeMatchers.isVisible());
-        verifyThat("#nameField", NodeMatchers.isVisible());
-        verifyThat("#emailField", NodeMatchers.isVisible());
-        verifyThat("#phoneField", NodeMatchers.isVisible());
-        verifyThat("#statusField", NodeMatchers.isVisible());
-        doubleClickOn("Xhensil Gjini");
-        verifyThat("#EditWorker", NodeMatchers.isEnabled());
-        verifyThat("#DeleteWorker", NodeMatchers.isEnabled());
-        verifyThat("#WorkerFull", NodeMatchers.isVisible());
-        verifyThat("#WorkerPhone", NodeMatchers.isVisible());
-        verifyThat("#WorkerSalary", NodeMatchers.isVisible());
-        verifyThat("#WorkerEmail", NodeMatchers.isVisible());
     }
 }

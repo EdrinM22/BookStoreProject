@@ -2,6 +2,7 @@ package Style;
 
 import Staff.Admin;
 import Staff.Gender;
+import Staff.Manager;
 import Staff.Worker;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -21,12 +22,12 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-class MainPageTest extends ApplicationTest {
+class MainPageTestManager extends ApplicationTest {
     private MainPage mainPage;
     @Start
     public void start(Stage stage) {
-        Admin admin = new Admin("Bob Johnson", "987-654-3210", "bob@example.com", 60000.0f, "1995-05-05", Gender.MALE, "adminPass123", Worker.ACCESSLEVEL.ADMIN);
-        mainPage = new MainPage(stage, admin);
+        Manager manager = new Manager("John Doe", "123-456-7890", "john.doe@example.com", 50000.0f, "1990-01-01", Gender.MALE, "password123", Worker.ACCESSLEVEL.MANAGER, true, false);
+        mainPage = new MainPage(stage, manager);
         stage.setScene(new Scene(mainPage.getRoot()));
         stage.show();
     }
@@ -45,7 +46,7 @@ class MainPageTest extends ApplicationTest {
 
     @Test
     public void shouldEnableAddWorkerButtonForAdmin() {
-        verifyThat("#AddWorker", NodeMatchers.isEnabled());
+        verifyThat("#AddWorker", NodeMatchers.isDisabled());
     }
 
     @Test
@@ -100,16 +101,5 @@ class MainPageTest extends ApplicationTest {
         verifyThat("#Employees",NodeMatchers.isEnabled());
         clickOn("#Employees");
         verifyThat("#WorkerTable", NodeMatchers.isVisible());
-        verifyThat("#nameField", NodeMatchers.isVisible());
-        verifyThat("#emailField", NodeMatchers.isVisible());
-        verifyThat("#phoneField", NodeMatchers.isVisible());
-        verifyThat("#statusField", NodeMatchers.isVisible());
-        doubleClickOn("Xhensil Gjini");
-        verifyThat("#EditWorker", NodeMatchers.isEnabled());
-        verifyThat("#DeleteWorker", NodeMatchers.isEnabled());
-        verifyThat("#WorkerFull", NodeMatchers.isVisible());
-        verifyThat("#WorkerPhone", NodeMatchers.isVisible());
-        verifyThat("#WorkerSalary", NodeMatchers.isVisible());
-        verifyThat("#WorkerEmail", NodeMatchers.isVisible());
     }
 }
